@@ -1,0 +1,271 @@
+---
+title: "Buying a House: Decision Analysis"
+date: 2/3/2025
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+In this project, we analyze the decision-making process for Debbie and George Calvert as they consider purchasing a house in Shaker Heights, Ohio. By structuring the problem as a decision tree and calculating the Expected Monetary Value (EMV) of each option, we aim to identify the optimal bidding strategy.
+
+# Summary of the Project
+
+Debbie and George have three initial bid options: **$390,000**, **$400,000**, and **$405,000**. They value the house at **$410,000** due to an emotional attachment. The likelihood of being the only bidders is **30%**. If other bidders are present, the seller will request final offers, where Debbie and George can adjust their bid.
+
+The probabilities of acceptance and potential gains are as follows:
+
+- **If only bidders:**
+  - $390,000: 40% acceptance
+  - $400,000: 60% acceptance
+  - $405,000: 90% acceptance
+
+- **If multiple bidders (final offers):**
+  - $390,000: 20% acceptance
+  - $395,000: 30% acceptance
+  - $400,000: 50% acceptance
+  - $405,000: 70% acceptance
+  - $410,000: 80% acceptance
+
+# Rationale for EMV Calculation
+
+To determine the best bidding strategy, we calculate the **Expected Monetary Value (EMV)** for each initial offer. The EMV represents the average expected outcome, taking into account the probabilities of different scenarios. Here's how we approach it:
+
+1. **Scenario A - Only Bidders (30% chance):**
+   - If Debbie and George are the only bidders, we calculate the EMV by multiplying the probability of the offer being accepted by the potential gain. The gain is calculated as the difference between their emotional valuation of the house ($410,000) and the offer price.
+   - For example, if they offer $390,000, the probability of acceptance is 40%, and the gain would be $20,000. The EMV for this scenario is 30% (chance of being the only bidders) * 40% (chance of acceptance) * $20,000.
+
+2. **Scenario B - Multiple Bidders (70% chance):**
+   - If there are other bidders, the seller will request final offers. Debbie and George have two options:
+     - **Resubmit the same offer**
+     - **Increase their offer by $5,000**
+   - We calculate the EMV for both options and choose the one with the higher EMV.
+   - For example, if they initially offer $390,000, they can either resubmit the same offer with a 20% acceptance probability or increase to $395,000 with a 30% acceptance probability. We calculate both scenarios and select the higher EMV.
+
+3. **Total EMV:**
+   - The total EMV for each initial offer is the sum of the EMV from Scenario A (only bidders) and the higher EMV from Scenario B (multiple bidders).
+
+This approach ensures that Debbie and George make a decision that maximizes their expected gain while considering the uncertainties involved in the bidding process.
+
+# EMV Calculation Breakdown
+
+### 1. Offer: $390,000
+**Scenario A: They are the only bidders (30% chance)**  
+Probability of acceptance: 40%  
+Gain if accepted: $20,000  
+EMV = 0.30 * [(0.40 * $20,000) + (0.60 * $0)]  
+EMV = 0.30 * $8,000 = **$2,400**  
+
+**Scenario B: There are other bidders (70% chance)**  
+*Option 1: Resubmit $390,000*  
+Probability of acceptance: 20%  
+Gain if accepted: $20,000  
+EMV = 0.70 * [(0.20 * $20,000) + (0.80 * $0)] = 0.70 * $4,000 = **$2,800**  
+
+*Option 2: Increase to $395,000*  
+Probability of acceptance: 30%  
+Gain if accepted: $15,000 ($410,000 - $395,000)  
+EMV = 0.70 * [(0.30 * $15,000) + (0.70 * $0)] = 0.70 * $4,500 = **$3,150**  
+
+**Choose the higher EMV (Increasing to $395,000): $3,150**  
+
+**Total EMV for $390,000 Offer:**  
+$2,400 (Only bidders) + $3,150 (Other bidders) = **$5,550**  
+
+### 2. Offer: $400,000
+**Scenario A: They are the only bidders (30% chance)**  
+Probability of acceptance: 60%  
+Gain if accepted: $10,000  
+EMV = 0.30 * [(0.60 * $10,000) + (0.40 * $0)]  
+EMV = 0.30 * $6,000 = **$1,800**  
+
+**Scenario B: There are other bidders (70% chance)**  
+*Option 1: Resubmit $400,000*  
+Probability of acceptance: 50%  
+Gain if accepted: $10,000  
+EMV = 0.70 * [(0.50 * $10,000) + (0.50 * $0)] = 0.70 * $5,000 = **$3,500**  
+
+*Option 2: Increase to $405,000*  
+Probability of acceptance: 70%  
+Gain if accepted: $5,000  
+EMV = 0.70 * [(0.70 * $5,000) + (0.30 * $0)] = 0.70 * $3,500 = **$2,450**  
+
+**Choose the higher EMV (Resubmitting $400,000): $3,500**  
+
+**Total EMV for $400,000 Offer:**  
+$1,800 (Only bidders) + $3,500 (Other bidders) = **$5,300**  
+
+### 3. Offer: $405,000
+**Scenario A: They are the only bidders (30% chance)**  
+Probability of acceptance: 90%  
+Gain if accepted: $5,000  
+EMV = 0.30 * [(0.90 * $5,000) + (0.10 * $0)]  
+EMV = 0.30 * $4,500 = **$1,350**  
+
+**Scenario B: There are other bidders (70% chance)**  
+*Option 1: Resubmit $405,000*  
+Probability of acceptance: 70%  
+Gain if accepted: $5,000  
+EMV = 0.70 * [(0.70 * $5,000) + (0.30 * $0)] = 0.70 * $3,500 = **$2,450**  
+
+*Option 2: Increase to $410,000*  
+Probability of acceptance: 80%  
+Gain if accepted: $0  
+EMV = 0.70 * [(0.80 * $0) + (0.20 * $0)] = **$0**  
+
+**Choose the higher EMV (Resubmitting $405,000): $2,450**  
+
+**Total EMV for $405,000 Offer:**  
+$1,350 (Only bidders) + $2,450 (Other bidders) = **$3,800**  
+
+# Calculate EMV
+
+We will calculate the EMV for each initial bid, considering both scenarios (only bidders vs. multiple bidders).
+
+```{r}
+# Define values
+emotional_value <- 410000
+
+# Offers
+offers <- c(390000, 400000, 405000)
+
+# Probability of being only bidders
+p_only_bidders <- 0.3
+p_multiple_bidders <- 0.7
+
+# EMV Calculations
+calculate_emv <- function(offer) {
+  if (offer == 390000) {
+    emv_only <- p_only_bidders * (0.4 * 20000 + 0.6 * 0)
+    emv_resubmit <- p_multiple_bidders * (0.2 * 20000 + 0.8 * 0)
+    emv_increase <- p_multiple_bidders * (0.3 * 15000 + 0.7 * 0)
+    emv_total <- emv_only + max(emv_resubmit, emv_increase)
+  } else if (offer == 400000) {
+    emv_only <- p_only_bidders * (0.6 * 10000 + 0.4 * 0)
+    emv_resubmit <- p_multiple_bidders * (0.5 * 10000 + 0.5 * 0)
+    emv_increase <- p_multiple_bidders * (0.7 * 5000 + 0.3 * 0)
+    emv_total <- emv_only + max(emv_resubmit, emv_increase)
+  } else if (offer == 405000) {
+    emv_only <- p_only_bidders * (0.9 * 5000 + 0.1 * 0)
+    emv_resubmit <- p_multiple_bidders * (0.7 * 5000 + 0.3 * 0)
+    emv_increase <- p_multiple_bidders * (0.8 * 0 + 0.2 * 0)
+    emv_total <- emv_only + max(emv_resubmit, emv_increase)
+  }
+  return(emv_total)
+}
+
+# Calculate EMVs
+emv_values <- sapply(offers, calculate_emv)
+
+# Display EMV results
+emv_df <- data.frame(Offer = offers, EMV = emv_values)
+emv_df
+```
+
+# Choose the Best Option
+
+The option with the highest EMV represents the optimal decision for Debbie and George.
+
+```{r}
+# Identify the best option
+best_option <- emv_df[which.max(emv_df$EMV), ]
+best_option
+```
+
+# Conclusion
+
+Based on the EMV calculations, Debbie and George should choose the offer with the highest expected return. This structured decision-making process helps in objectively evaluating the risks and rewards associated with each bidding option.
+
+
+
+```{r}
+library(DiagrammeR)
+
+library(DiagrammeR)
+
+grViz(" 
+digraph decision_tree {
+  
+  rankdir=LR
+  
+  node [shape=box, style=filled, fontname=Helvetica, fontsize=12, fillcolor=white]
+  
+  Start [label='Initial Offer']
+  
+  Offer_390 [label='$390,000']
+  Offer_400 [label='$400,000']
+  Offer_405 [label='$405,000']
+  
+  Only_Bidders_390 [label='Only Bidders (30%)']
+  Only_Bidders_400 [label='Only Bidders (30%)']
+  Only_Bidders_405 [label='Only Bidders (30%)']
+  
+  Accept_390 [label='Accepted (40%)\\nGain $20,000']
+  Reject_390 [label='Rejected (60%)\\nGain $0']
+  
+  Accept_400 [label='Accepted (60%)\\nGain $10,000']
+  Reject_400 [label='Rejected (40%)\\nGain $0']
+  
+  Accept_405 [label='Accepted (90%)\\nGain $5,000']
+  Reject_405 [label='Rejected (10%)\\nGain $0']
+  
+  Other_Bidders_390 [label='Other Bidders (70%)']
+  Other_Bidders_400 [label='Other Bidders (70%)']
+  Other_Bidders_405 [label='Other Bidders (70%)']
+  
+  Resubmit_390 [label='Resubmit $390,000\\n(20% Gain $20,000)']
+  Increase_395 [label='Increase to $395,000\\n(30% Gain $15,000)']
+  
+  Resubmit_400 [label='Resubmit $400,000\\n(50% Gain $10,000)']
+  Increase_405 [label='Increase to $405,000\\n(70% Gain $5,000)']
+  
+  Resubmit_405 [label='Resubmit $405,000\\n(70% Gain $5,000)']
+  Increase_410 [label='Increase to $410,000\\n(80% Gain $0)']
+  
+  Final_Gain_390 [label='Optimal Gain\\n$5,550']
+  Final_Gain_400 [label='Optimal Gain\\n$5,300']
+  Final_Gain_405 [label='Optimal Gain\\n$3,800']
+  
+  Start -> Offer_390 [color=green, penwidth=2]
+  Start -> Offer_400
+  Start -> Offer_405
+  
+  Offer_390 -> Only_Bidders_390
+  Offer_400 -> Only_Bidders_400
+  Offer_405 -> Only_Bidders_405
+  
+  Only_Bidders_390 -> Accept_390
+  Only_Bidders_390 -> Reject_390
+  
+  Only_Bidders_400 -> Accept_400
+  Only_Bidders_400 -> Reject_400
+  
+  Only_Bidders_405 -> Accept_405
+  Only_Bidders_405 -> Reject_405
+  
+  Offer_390 -> Other_Bidders_390 [color=green, penwidth=2]
+  Offer_400 -> Other_Bidders_400
+  Offer_405 -> Other_Bidders_405
+  
+  Other_Bidders_390 -> Resubmit_390
+  Other_Bidders_390 -> Increase_395 [color=green, penwidth=2]
+  
+  Other_Bidders_400 -> Resubmit_400
+  Other_Bidders_400 -> Increase_405
+  
+  Other_Bidders_405 -> Resubmit_405
+  Other_Bidders_405 -> Increase_410
+  
+  Increase_395 -> Final_Gain_390 [color=green, penwidth=2]
+  Increase_405 -> Final_Gain_400
+  Increase_410 -> Final_Gain_405
+}
+", width = 1500, height = 1200)
+
+
+
+```
+
